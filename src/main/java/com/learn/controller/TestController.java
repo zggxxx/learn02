@@ -41,4 +41,8 @@ public class TestController {
     public String helloNewB(){
         return "HelloNewB";
     }
+    @GetMapping("/testReviewer")
+    public String testReviewer(){
+        return "Test Reviewer";
+    }
 }
