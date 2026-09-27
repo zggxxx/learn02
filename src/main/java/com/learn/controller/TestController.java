@@ -33,4 +33,8 @@ public class TestController {
         }
         return user;
     }
+    @GetMapping("/testConflictMerge")
+    public String testConflictMerge(){
+        return "Test Conflict Merge";
+    }
 }
