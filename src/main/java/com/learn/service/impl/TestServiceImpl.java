@@ -9,4 +9,8 @@ public class TestServiceImpl implements TestService {
     public String doTest() {
         return "Hello World!";
     }
+    @Override
+    public String doHelloworld(){
+        return "Feature/helloworld";
+    }
 }

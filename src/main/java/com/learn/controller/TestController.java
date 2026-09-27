@@ -18,4 +18,9 @@ public class TestController {
     public String doTest(){
         return testService.doTest();
     }
+
+    @GetMapping("/helloworld")
+    public String doHelloWorld(){
+        return testService.doHelloworld();
+    }
 }
