@@ -37,4 +37,8 @@ public class TestController {
     public String testConflictMerge(){
         return "New Test Conflict Merge";
     }
+    @GetMapping("/helloNewB")
+    public String helloNewB(){
+        return "HelloNewB";
+    }
 }
