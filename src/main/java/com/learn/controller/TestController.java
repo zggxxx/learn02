@@ -26,10 +26,7 @@ public class TestController {
     public UserEntity getUserInfo(@RequestParam("userId") Long userId){
         UserEntity user = null;
         if(userId == 12345L){
-            user = new UserEntity();
-            user.setUserId(userId);
-            user.setUserName("Lilis A");
-            user.setPassword("12345qwertyu");
+            user = new UserEntity("Lilis A","12345qwertyu",userId);
         }
         return user;
     }
