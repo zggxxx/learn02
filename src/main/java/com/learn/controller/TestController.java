@@ -1,13 +1,11 @@
 package com.learn.controller;
 
+import com.learn.entity.UserEntity;
 import com.learn.service.TestService;
 import com.learn.service.impl.TestServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/test")
@@ -17,5 +15,34 @@ public class TestController {
     @GetMapping("/do")
     public String doTest(){
         return testService.doTest();
+    }
+
+    @GetMapping("/helloworld")
+    public String doHelloWorld(){
+        return testService.doHelloworld();
+    }
+
+    @GetMapping("/getUser")
+    public UserEntity getUserInfo(@RequestParam("userId") Long userId){
+        UserEntity user = null;
+        if(userId == 12345L){
+            user = new UserEntity();
+            user.setUserId(userId);
+            user.setUserName("Lilis A");
+            user.setPassword("12345qwertyu");
+        }
+        return user;
+    }
+    @GetMapping("/testConflictMerge")
+    public String testConflictMerge(){
+        return "New Test Conflict Merge";
+    }
+    @GetMapping("/helloNewB")
+    public String helloNewB(){
+        return "HelloNewB";
+    }
+    @GetMapping("/testReviewer")
+    public String testReviewer(){
+        return "Test Reviewer";
     }
 }
