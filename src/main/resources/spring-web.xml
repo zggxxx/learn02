@@ -18,5 +18,11 @@
            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <context:component-scan base-package="com.learn.controller"/>
+    <bean class="com.learn.config.SwaggerConfig"/>
+    <!-- 2. 配置 Swagger 静态资源不被拦截 -->
+    <!-- 注意：如果你使用的是 springfox-swagger-ui 的默认资源路径，通常使用下面的配置 -->
+    <mvc:resources mapping="/swagger-ui/**" location="classpath:/META-INF/resources/webjars/springfox-swagger-ui/"/>
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
+    <mvc:resources mapping="/v3/api-docs/**" location="classpath:/META-INF/resources/"/>
     <mvc:annotation-driven/>
 </beans>
