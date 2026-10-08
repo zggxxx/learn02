@@ -23,6 +23,22 @@
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/login"/>
+            <!-- Swagger UI 入口 -->
+            <mvc:exclude-mapping path="/swagger-ui.html"/>
+            <mvc:exclude-mapping path="/swagger-ui/**"/>
+
+            <!-- Swagger 核心资源发现路径，这是最容易遗漏的 -->
+            <mvc:exclude-mapping path="/swagger-resources"/>
+            <mvc:exclude-mapping path="/swagger-resources/**"/>
+
+            <!-- Swagger API 文档路径 (根据你的版本选择) -->
+            <mvc:exclude-mapping path="/v2/api-docs"/>
+            <mvc:exclude-mapping path="/v3/api-docs/**"/>
+
+            <!-- 静态资源 -->
+            <mvc:exclude-mapping path="/webjars/**"/>
+            <!-- 可选的辅助资源 -->
+            <mvc:exclude-mapping path="/favicon.ico"/>
             <bean class="com.learn.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
