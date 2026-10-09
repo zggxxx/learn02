@@ -2,6 +2,8 @@ package com.learn.controller;
 
 import com.learn.dto.UserDTO;
 import com.learn.service.LoginService;
+import com.learn.utils.JwtUtil;
+import com.learn.vo.Result;
 import com.learn.vo.UserVO;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +25,15 @@ public class LoginController {
     LoginService loginService;
     @ApiOperation("登录")
     @PostMapping
-    public ResponseEntity<UserVO> login(@RequestBody UserDTO loginUser, HttpServletRequest request){
+    public Result<String> login(@RequestBody UserDTO loginUser, HttpServletRequest request){
         UserVO userVO = loginService.getUserInfo(loginUser);
         if(userVO == null){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return Result.error("用户不存在");
         }
         HttpSession session =request.getSession();
+        String token = JwtUtil.createToken(userVO.getUserId(),userVO.getUserName());
         request.changeSessionId();
         session.setAttribute("LOGIN_USER",userVO);
-        return ResponseEntity.ok(userVO);
+        return Result.success(token);
     }
 }
