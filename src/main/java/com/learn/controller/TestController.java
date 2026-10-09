@@ -32,7 +32,7 @@ public class TestController {
     public UserEntity getUserInfo(@ApiParam(value="用户ID",required=true,example = "12345") @RequestParam("userId") Long userId){
         UserEntity user = null;
         if(Long.valueOf( 12345L).equals(userId)){
-            user = new UserEntity("Lilis A","12345qwertyu",userId);
+            user = new UserEntity("zgx","19960621",userId);
         }
         return user;
     }

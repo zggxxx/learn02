@@ -17,4 +17,13 @@ public class LoginServiceImpl implements LoginService {
         }
         return userVO;
     }
+
+    @Override
+    public UserVO getCurrentUserInfo(Long userId){
+        UserVO userVO = null;
+        if(Long.valueOf(12345L).equals(userId)){
+            userVO = new UserVO("zgx",12345L);
+        }
+        return userVO;
+    }
 }
