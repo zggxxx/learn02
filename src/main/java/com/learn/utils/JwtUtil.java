@@ -16,19 +16,40 @@ public class JwtUtil {
     private static final SecretKey KEY =  Keys.hmacShaKeyFor(SECRET.getBytes(StandardCharsets.UTF_8));
     /** 过期时间 24小时 **/
     private static final Long EXP_TIME = 24 * 60 * 60 * 1000L;
+    /** 刷新时间 7天 **/
+    private static final Long REFRESH_EXP_TIME = 7 * 24 * 60 * 60 * 1000L;
     /**
      * 生成token
      */
-    public static String createToken(Long userId ,String username){
+    public static String createToken(Long userId ,String userName){
         Date now = new Date();
         return Jwts.builder()
-                .setSubject(username)
+                .setSubject(userName)
                 .claim("userId",userId)
+                .claim("type","access")
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + EXP_TIME))
                 .signWith(KEY, SignatureAlgorithm.HS256)
                 .compact();
 
+    }
+
+    /**
+     * 生成刷新token
+     * @param userId 用户ID
+     * @param userName 用户名
+     * @return token
+     */
+    public static String createRefreshToken(Long userId,String userName){
+        Date now = new Date();
+        return Jwts.builder()
+                .setSubject(userName)
+                .claim("userId",userId)
+                .claim("type","refresh")
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + REFRESH_EXP_TIME))
+                .signWith(KEY,SignatureAlgorithm.HS256)
+                .compact();
     }
     /**
      * 解析token

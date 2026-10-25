@@ -4,6 +4,7 @@ import com.learn.entity.UserEntity;
 import com.learn.service.TestService;
 import com.learn.utils.UserContext;
 import io.swagger.annotations.*;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 @Api(tags="测试模块")
@@ -15,7 +16,7 @@ public class TestController {
     @ApiOperation("测试方法一")
     @GetMapping("/do")
     public String doTest(){
-        return UserContext.getUserId() + testService.doTest();
+        return SecurityUtils.getSubject().getPrincipal() + testService.doTest();
     }
 
     @ApiOperation("你好世界方法")
